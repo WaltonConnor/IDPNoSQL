@@ -65,12 +65,10 @@
 
     <div>
         <button id="getPatients" onclick="" style="display: none;">Get</button>
-        <button id="getStaff" onclick="" style="display: none;">Get</button>
+        <button id="getStaff" onclick="searchStaff()" style="display: none;">Get</button>
     </div>
     
-    <div>
-        <button id="list" onclick="list()">List</button>
-    </div>
+    
     
     <script>
         function tableCheck(){
@@ -133,6 +131,74 @@
             //return selectedlocationtype;
         }
 
+        async function searchPatients(){
+            document.getElementById(".grid-container").innerHTML=""
+            const type = sexCheck();
+            const type2 = allergyCheck();
+            console.log(type);
+            console.log(type2);
+            const categoryEndpointFilter =  "'" + type + "'";
+            const categoryEndpointFilter2 =  " and Patient_Allergies eq '" + type2 + "'";
+            const endpoint = `/data-api/rest/Patient?$filter=Patient_Sex eq `;
+            const response = await fetch(`${endpoint}${categoryEndpointFilter}${categoryEndpointFilter2}`);
+            const result = await response.json();
+            //console.table(result.value);
+        }
+        async function searchStaff(){
+            document.getElementById(".grid-container").innerHTML=""
+            const type = jobnameCheck();
+            const type2 = locationtypeCheck();
+            console.log(type);
+            console.log(type2);
+            const query = `
+            {
+                queryStaff(filter: {
+                    JobName: {
+                        anyofterms: `+type+`
+                    }
+                }){
+                    name
+                    TypeOfPractice(filter: {
+                    score: {
+                        anyofterms: `+type2+`
+                    }
+                    }) {
+                        SID
+                        FirstName
+                        LastName
+                        MobileNumber
+                        HomeTelephone
+                        Email
+                        Address
+                        City
+                        Country
+                        PostCode
+                        EmergencyContactName
+                        EmergencyContactNumber
+                        JobName
+                        JobSalery
+                        JobHours
+                        PracticeName
+                        TypeOfPractice
+                        PracticeAddress
+                        PracticeCity
+                        PracticeCountry
+                        PracticePostcode
+                        PracticeEmail
+                        PracticePhoneNumber
+                        id
+                    }
+                }
+            }`;
+            const endpoint = "/data-api/graphql";
+            const response = await fetch(endpoint, { 
+                method: "POST", 
+                headers: { "Content-Type": "application/json" }, 
+                body: JSON.stringify({ query: query }) 
+            });
+            const result = await response.json();
+            console.table(result.data);
+        }
     </script>
 
 
