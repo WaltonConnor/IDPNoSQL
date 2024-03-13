@@ -152,41 +152,40 @@
             console.log(type2);
             const query = `
             {
-                queryStaff(filter: {
-                    JobName: {
+                Staff(filter: { JobName: {
                         anyofterms: `+type+`
                     }
                 }){
                     JobName
-                    TypeOfPractice(filter: {
-                    TypeOfPractice: {
-                        anyofterms: `+type2+`
-                    }
+                    and: {
+                        TypeOfPractice: `+type2+`
                     }) {
-                        SID
-                        FirstName
-                        LastName
-                        MobileNumber
-                        HomeTelephone
-                        Email
-                        Address
-                        City
-                        Country
-                        PostCode
-                        EmergencyContactName
-                        EmergencyContactNumber
-                        JobName
-                        JobSalery
-                        JobHours
-                        PracticeName
-                        TypeOfPractice
-                        PracticeAddress
-                        PracticeCity
-                        PracticeCountry
-                        PracticePostcode
-                        PracticeEmail
-                        PracticePhoneNumber
-                        id
+                        items{
+                            SID
+                            FirstName
+                            LastName
+                            MobileNumber
+                            HomeTelephone
+                            Email
+                            Address
+                            City
+                            Country
+                            PostCode
+                            EmergencyContactName
+                            EmergencyContactNumber
+                            JobName
+                            JobSalery
+                            JobHours
+                            PracticeName
+                            TypeOfPractice
+                            PracticeAddress
+                            PracticeCity
+                            PracticeCountry
+                            PracticePostcode
+                            PracticeEmail
+                            PracticePhoneNumber
+                            id
+                        }
                     }
                 }
             }`;
