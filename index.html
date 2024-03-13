@@ -62,6 +62,11 @@
             <br></br>
         </form>
     </div>
+
+    <div>
+        <button id="getPatients" onclick="" style="display: none;">Get</button>
+        <button id="getStaff" onclick="" style="display: none;">Get</button>
+    </div>
     
     <div>
         <button id="list" onclick="list()">List</button>
@@ -78,8 +83,7 @@
                     document.getElementById("jobnamefilterbox").style.display="none";
                     document.getElementById("locationtypefilterlabel").style.display="none";
                     document.getElementById("locationtypefilterbox").style.display="none";
-                    document.getElementById("getLocation").style.display="none";
-                    document.getElementById("getAppointments").style.display="none";
+                    document.getElementById("getStaff").style.display="none";
 
                     document.getElementById("sexfilterlabel").style.display="block";
                     document.getElementById("sexfilterbox").style.display="block";
@@ -92,14 +96,13 @@
                     document.getElementById("sexfilterbox").style.display="none";
                     document.getElementById("allergyfilterlabel").style.display="none";
                     document.getElementById("allergyfilterbox").style.display="none";
-                    document.getElementById("locationtypefilterlabel").style.display="none";
-                    document.getElementById("locationtypefilterbox").style.display="none";
-                    document.getElementById("getAppointments").style.display="none";
                     document.getElementById("getPatients").style.display="none";
 
                     document.getElementById("jobnamefilterlabel").style.display="block";
                     document.getElementById("jobnamefilterbox").style.display="block";
-                    document.getElementById("getLocation").style.display="block";
+                    document.getElementById("locationtypefilterlabel").style.display="block";
+                    document.getElementById("locationtypefilterbox").style.display="block";
+                    document.getElementById("getStaff").style.display="block";
                     break;
                 default:
                     console.log("w-w-w whats goin on? *queue crazy frog*")
