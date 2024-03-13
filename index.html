@@ -152,7 +152,7 @@
             console.log(type2);
             const query = `
             {
-                Staff(filter: { JobName: { eq: "`+type+`" } }) {
+                staff(filter: { JobName: { eq: "`+type+`" } }) {
                     items{
                         SID
                         FirstName
