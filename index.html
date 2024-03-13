@@ -121,14 +121,14 @@
         function jobnameCheck(){
             tableoutput = document.getElementById("jobnamefilterbox");
             var jobname = tableoutput.options[tableoutput.selectedIndex].text;
-            console.log(jobname);
-            //return jobname;
+            //console.log(jobname);
+            return jobname;
         }
         function locationtypeCheck(){
             tableoutput = document.getElementById("locationtypefilterbox");
             var selectedlocationtype = tableoutput.options[tableoutput.selectedIndex].text;
-            console.log(selectedlocationtype);
-            //return selectedlocationtype;
+            //console.log(selectedlocationtype);
+            return selectedlocationtype;
         }
 
         async function searchPatients(){
