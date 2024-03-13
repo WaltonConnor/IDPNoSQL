@@ -36,6 +36,17 @@
           "role": "anonymous"
         }
       ]
+    },
+    "Patient": {
+      "source": "PatientContainer",
+      "rest": false,
+      "graphql":true,
+      "permissions": [
+        {
+          "actions": ["*"],
+          "role": "anonymous"
+        }
+      ]
     }
   }
 }
