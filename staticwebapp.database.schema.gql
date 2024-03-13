@@ -1,0 +1,23 @@
+type Patient @model {
+  NHSnumber: Int
+  FirstName: String
+  LastName: String
+  Sex: String
+  DoB: String
+  MobileNumber: Int
+  HomeTelephone: Int
+  Email: String
+  Address: String
+  City: String
+  Country: String
+  PostCode: String
+  Allergies: String
+  Notes: String
+  EmergencyContactName: String
+  EmergencyContactNumber: Int
+  UpcomingAppointmentDate: String
+  PracticeName: String
+  AssignedMedicineName: String
+  AssignedMedicineManufacturer
+  id: String
+}
