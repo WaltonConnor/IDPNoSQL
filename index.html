@@ -6,14 +6,134 @@
     <title>IDP Front End</title>
 </head>
 <body>
-    <h1>Static Web Apps Database Connections</h1>
-    <blockquote>
-        Open the console in the browser developer tools to see the API responses.
-    </blockquote>
+    <div class="fullbox" id="TitleBox">Thor Database</div>
+    <div class="fullbox" id="InformationBox">Please use the boxes below to select the table you wold like to search, as well as any details you would like to filter by.</div>
+    
+    <div class="fullbox" id="filtercontrols">
+        <form>
+            <!-- Initial selection for filtering data -->
+            <label for="tablefilter">Choose a table to retrieve data from:</label>
+            <select id="tablefilterbox" name="tablefilter" onchange="tableCheck()">
+                <option selected disabled>Choose a selection:</option>
+                <option id="patientselect" value="Patient">Patient</option>
+                <option id="staffselect" value="Staff">Staff</option>
+            </select>
+            <br></br>
+            <!-- Filter boxes for patient selection -->
+            <label id="sexfilterlabel" for="sexfilter" style="display: none;">Choose a sex to filter the data: </label>
+            <select id="sexfilterbox" name="sexfilter" style="display: none;" onchange="sexCheck()">
+                <option selected disabled>Choose a sex:</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+            <br></br>
+            <label id="allergyfilterlabel" for="allergyfilter" style="display: none;">Choose an allergy to filter the data: </label>
+            <select id="allergyfilterbox" name="allergyfilter" style="display: none;" onchange="allergyCheck()">
+                <option selected disabled>Choose an allergy:</option>
+                <option value="Animals">Animals</option>
+                <option value="Food">Food</option>
+                <option value="Hay Fever">Hay Fever</option>
+            </select>
+            <br></br>
+            <!-- Filter box for staff selection -->
+            <label id="jobnamefilterlabel" for="jobnamefilterbox" style="display: none;">Choose the type of job to filter the data: </label>
+            <select id="jobnamefilterbox" name="jobname filter" style="display: none;" onchange="jobnameCheck()">
+                <option selected disabled>Choose a job:</option>
+                <option value="Receptionist">Receptionist</option>
+                <option value="Doctor">Doctor</option>
+                <option value="Ambulance Team">Ambulance Team</option>
+                <option value=" Facilities">Facilities</option>
+                <option value="Management">Management</option>
+                <option value="Nurse">Nurse</option>
+                <option value="Pharmacy">Pharmacy</option>
+                <option value="Phycological">Phycological</option>
+                <option value="Midwife">Midwife</option>
+                <option value="Support">Support</option>
+            </select>
+            <br></br>
+            <label id="locationtypefilterlabel" for="locationtypefilter" style="display: none;">Choose the appointment location to filter the data: </label>
+            <select id="locationtypefilterbox" name="locationtype filter" style="display: none;" onchange="locationtypeCheck()">
+                <option selected disabled>Choose a location type:</option>
+                <option value="Hospital">Hospital</option>
+                <option value="Clinic">Clinic</option>
+                <option value="Pharmacy">Pharmacy</option>
+            </select>
+            <br></br>
+        </form>
+    </div>
+    
     <div>
         <button id="list" onclick="list()">List</button>
     </div>
     
+    <script>
+        function tableCheck(){
+            tableoutput = document.getElementById("tablefilterbox");
+            var selectedText = tableoutput.options[tableoutput.selectedIndex].text;
+            console.log(selectedText);
+            switch (selectedText){
+                case "Patient":
+                    document.getElementById("jobnamefilterlabel").style.display="none";
+                    document.getElementById("jobnamefilterbox").style.display="none";
+                    document.getElementById("locationtypefilterlabel").style.display="none";
+                    document.getElementById("locationtypefilterbox").style.display="none";
+                    document.getElementById("getLocation").style.display="none";
+                    document.getElementById("getAppointments").style.display="none";
+
+                    document.getElementById("sexfilterlabel").style.display="block";
+                    document.getElementById("sexfilterbox").style.display="block";
+                    document.getElementById("allergyfilterlabel").style.display="block";
+                    document.getElementById("allergyfilterbox").style.display="block";
+                    document.getElementById("getPatients").style.display="block";
+                    break;
+                case "Staff":
+                    document.getElementById("sexfilterlabel").style.display="none";
+                    document.getElementById("sexfilterbox").style.display="none";
+                    document.getElementById("allergyfilterlabel").style.display="none";
+                    document.getElementById("allergyfilterbox").style.display="none";
+                    document.getElementById("locationtypefilterlabel").style.display="none";
+                    document.getElementById("locationtypefilterbox").style.display="none";
+                    document.getElementById("getAppointments").style.display="none";
+                    document.getElementById("getPatients").style.display="none";
+
+                    document.getElementById("jobnamefilterlabel").style.display="block";
+                    document.getElementById("jobnamefilterbox").style.display="block";
+                    document.getElementById("getLocation").style.display="block";
+                    break;
+                default:
+                    console.log("w-w-w whats goin on? *queue crazy frog*")
+            }
+        }
+        function sexCheck(){
+            tableoutput = document.getElementById("sexfilterbox");
+            var selectedSex = tableoutput.options[tableoutput.selectedIndex].text;
+            console.log(selectedSex);
+            //return selectedSex;
+        }
+        function allergyCheck(){
+            tableoutput = document.getElementById("allergyfilterbox");
+            var selectedAllergy = tableoutput.options[tableoutput.selectedIndex].text;
+            console.log(selectedAllergy);
+            //return selectedAllergy;
+        }
+        function jobnameCheck(){
+            tableoutput = document.getElementById("jobnamefilterbox");
+            var jobname = tableoutput.options[tableoutput.selectedIndex].text;
+            console.log(jobname);
+            //return jobname;
+        }
+        function locationtypeCheck(){
+            tableoutput = document.getElementById("locationtypefilterbox");
+            var selectedlocationtype = tableoutput.options[tableoutput.selectedIndex].text;
+            console.log(selectedlocationtype);
+            //return selectedlocationtype;
+        }
+
+    </script>
+
+
+
+
     <script>
         async function list() {
             const query = `
