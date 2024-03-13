@@ -155,11 +155,13 @@
                 Staff(filter: { JobName: {
                         anyofterms: `+type+`
                     }
-                }){
+                })
+                {
                     JobName
                     and: {
                         TypeOfPractice: `+type2+`
-                    }) {
+                    } 
+                    {
                         items{
                             SID
                             FirstName
