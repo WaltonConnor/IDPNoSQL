@@ -152,7 +152,7 @@
             console.log(type2);
             const query = `
             {
-                staff(filter: { JobName: { eq: "`+type+`" } }) {
+                staff(filter: { JobName: { eq: "`+type+`" } and TypeOfPractice: { eq: "`+type2+`" } }) {
                     items{
                         SID
                         FirstName
@@ -188,7 +188,7 @@
                 body: JSON.stringify({ query: query }) 
             });
             const result = await response.json();
-            console.table(result.data);
+            console.table(result.data.staff.items);
         }
     </script>
 
