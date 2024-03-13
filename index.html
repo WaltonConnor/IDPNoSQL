@@ -158,9 +158,9 @@
                 })
                 {
                     JobName
-                    and: {
+                    Staff(filter: { score: {
                         TypeOfPractice: `+type2+`
-                    } 
+                    }})
                     {
                         items{
                             SID
