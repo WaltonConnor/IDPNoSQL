@@ -18,7 +18,7 @@
         async function list(){
             const query = `
                 {
-                    Patient {
+                    PatientContainer {
                         items {
                             NHSnumber
                             FirstName
@@ -51,7 +51,7 @@
                 body: JSON.stringify({ query: query })
             });
             const result = await response.json();
-            console.table(result.data.Patient.items);
+            console.table(result.data.PatientContainer.items);
         }
     </script>
 </body>
