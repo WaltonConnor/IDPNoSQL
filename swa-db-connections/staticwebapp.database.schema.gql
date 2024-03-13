@@ -8,7 +8,7 @@ type Staff @model {
   Address: String
   City: String
   Country: String
-  Postcode: String
+  PostCode: String
   EmergencyContactName: String
   EmergencyContactNumber: Int
   JobName: String
