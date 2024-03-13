@@ -1,5 +1,5 @@
 type Staff @model {
-  SID: id
+  SID: ID
   FirstName: String
   LastName: String
   MobileNumber: Int
@@ -12,6 +12,8 @@ type Staff @model {
   EmergencyContactName: String
   EmergencyContactNumber: Int
   JobName: String
+  JobSalery: String
+  JobHours: String
   PracticeName: String
   TypeOfPractice: String
   PracticeAddress: String
@@ -20,4 +22,5 @@ type Staff @model {
   PracticePostcode: String
   PracticeEmail: String
   PracticePhoneNumber: Int
+  id: String
 }

@@ -11,53 +11,51 @@
         Open the console in the browser developer tools to see the API responses.
     </blockquote>
     <div>
-        <button id="get" onclick="get()">Get</button>
+        <button id="list" onclick="list()">List</button>
     </div>
     
     <script>
-        async function get() {
-            const SID = '1';
-            const gql = `
-            query getById($SID: ID!) {
-                Staff_by_pk(SID: $SID) {
-                SID
-                FirstName
-                LastName
-                MobileNumber
-                HomeTelephone
-                Email
-                Address
-                City
-                Country
-                PostCode
-                EmergencyContactName
-                EmergencyContactNumber
-                JobName
-                PracticeName
-                TypeOfPractice
-                PracticeAddress
-                PracticeCity
-                PracticeCountry
-                PracticePostcode
-                PracticeEmail
-                PracticePhoneNumber
+        async function list() {
+            const query = `
+                {
+                staff {
+                    items {
+                        SID
+                        FirstName
+                        LastName
+                        MobileNumber
+                        HomeTelephone
+                        Email
+                        Address
+                        City
+                        Country
+                        PostCode
+                        EmergencyContactName
+                        EmergencyContactNumber
+                        JobName
+                        JobSalery
+                        JobHours
+                        PracticeName
+                        TypeOfPractice
+                        PracticeAddress
+                        PracticeCity
+                        PracticeCountry
+                        PracticePostcode
+                        PracticeEmail
+                        PracticePhoneNumber
+                        id
+                    }
                 }
-            }`;
-            const query = {
-                query: gql,
-                variables: {
-                    SID: SID,
-                },
-            };
+                }`;
             const endpoint = "/data-api/graphql";
             const response = await fetch(endpoint, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(query),
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ query: query })
             });
             const result = await response.json();
-            console.table(result.data.Staff_by_pk);
-        }
+            console.table(result.data.staff.items);
+            }
     </script>
 </body>
 </html>
