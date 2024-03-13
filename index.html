@@ -54,7 +54,7 @@
                 body: JSON.stringify({ query: query }) 
             });
             const result = await response.json();
-            console.table(result.data);
+            console.table(result.data.staff.items);
             }
     </script>
 </body>
