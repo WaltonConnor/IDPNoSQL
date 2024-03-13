@@ -152,14 +152,14 @@
             console.log(type2);
             const query = `
             {
-                Staff(filter: {
+                queryStaff(filter: {
                     JobName: {
                         anyofterms: `+type+`
                     }
                 }){
-                    name
-                    TypeOfPractice(filter: {
-                    score: {
+                    JobName
+                    posts(filter: {
+                    TypeOfPracticw: {
                         anyofterms: `+type2+`
                     }
                     }) {
