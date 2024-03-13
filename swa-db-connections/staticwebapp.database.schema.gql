@@ -1,51 +1,49 @@
-type{
-  Staff @model {
-    SID: ID
-    FirstName: String
-    LastName: String
-    MobileNumber: Int
-    HomeTelephone: Int
-    Email: String
-    Address: String
-    City: String
-    Country: String
-    PostCode: String
-    EmergencyContactName: String
-    EmergencyContactNumber: Int
-    JobName: String
-    JobSalery: String
-    JobHours: String
-    PracticeName: String
-    TypeOfPractice: String
-    PracticeAddress: String
-    PracticeCity: String
-    PracticeCountry: String
-    PracticePostcode: String
-    PracticeEmail: String
-    PracticePhoneNumber: Int
-    id: String
-  },
-  Patient @model {
-    NHSnumber: Int
-    FirstName: String
-    LastName: String
-    Sex: String
-    DoB: String
-    MobileNumber: Int
-    HomeTelephone: Int
-    Email: String
-    Address: String
-    City: String
-    Country: String
-    PostCode: String
-    Allergies: String
-    Notes: String
-    EmergencyContactName: String
-    EmergencyContactNumber: Int
-    UpcomingAppointmentDate: String
-    PracticeName: String
-    AssignedMedicineName: String
-    AssignedMedicineManufacturer
-    id: String
-  }
+type Staff @model {
+  SID: ID
+  FirstName: String
+  LastName: String
+  MobileNumber: Int
+  HomeTelephone: Int
+  Email: String
+  Address: String
+  City: String
+  Country: String
+  PostCode: String
+  EmergencyContactName: String
+  EmergencyContactNumber: Int
+  JobName: String
+  JobSalery: String
+  JobHours: String
+  PracticeName: String
+  TypeOfPractice: String
+  PracticeAddress: String
+  PracticeCity: String
+  PracticeCountry: String
+  PracticePostcode: String
+  PracticeEmail: String
+  PracticePhoneNumber: Int
+  id: String
+}
+type Patient @model {
+  NHSnumber: Int
+  FirstName: String
+  LastName: String
+  Sex: String
+  DoB: String
+  MobileNumber: Int
+  HomeTelephone: Int
+  Email: String
+  Address: String
+  City: String
+  Country: String
+  PostCode: String
+  Allergies: String
+  Notes: String
+  EmergencyContactName: String
+  EmergencyContactNumber: Int
+  UpcomingAppointmentDate: String
+  PracticeName: String
+  AssignedMedicineName: String
+  AssignedMedicineManufacturer
+  id: String
 }
