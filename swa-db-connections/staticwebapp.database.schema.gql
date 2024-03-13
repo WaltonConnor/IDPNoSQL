@@ -46,4 +46,4 @@ type Patient @model {
   AssignedMedicineName: String
   AssignedMedicineManufacturer
   id: String
-}
+};
