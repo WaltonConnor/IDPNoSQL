@@ -28,6 +28,8 @@
   "entities": {
     "Staff": {
       "source": "StaffContainer",
+      "rest": false,
+      "graphql":true,
       "permissions": [
         {
           "actions": ["*"],
