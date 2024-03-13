@@ -1,9 +1,7 @@
-type Patient @model {
-  NHSnumber: Int
+type Staff @model {
+  SID: id
   FirstName: String
   LastName: String
-  Sex: String
-  DoB: String
   MobileNumber: Int
   HomeTelephone: Int
   Email: String
@@ -11,13 +9,15 @@ type Patient @model {
   City: String
   Country: String
   Postcode: String
-  Allergies: String
-  Notes: String
   EmergencyContactName: String
   EmergencyContactNumber: Int
-  UpcomingAppointmentDate: String
+  JobName: String
   PracticeName: String
-  AssignedMedicineName: String
-  AssignedMedicineManufacturer: String
-  id: String
+  TypeOfPractice: String
+  PracticeAddress: String
+  PracticeCity: String
+  PracticeCountry: String
+  PracticePostcode: String
+  PracticeEmail: String
+  PracticePhoneNumber: Int
 }

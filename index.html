@@ -15,39 +15,48 @@
     </div>
     
     <script>
-        async function list(){
-            const query = `
-                {
-                    PatientContainer {
-                        items {
-                            NHSnumber
-                            FirstName
-                            LastName
-                            Sex
-                            DoB
-                            MobileNumber
-                            HomeTelephone
-                            Email
-                            Address
-                            City
-                            Country
-                            Postcode
-                            Allergies
-                            Notes
-                            EmergencyContactName
-                            EmergencyContactNumber
-                            UpcomingAppointmentDate
-                            PracticeName
-                            AssignedMedicineName
-                            AssignedMedicineManufacturer
-                            id
-                        }
-                    }
-                }`;
+        async function get() {
+            const SID = '1';
+            const gql = `
+            query getById($SID: ID!) {
+                Staff_by_pk(SID: $SID) {
+                SID
+                FirstName
+                LastName
+                MobileNumber
+                HomeTelephone
+                Email
+                Address
+                City
+                Country
+                PostCode
+                EmergencyContactName
+                EmergencyContactNumber
+                JobName
+                PracticeName
+                TypeOfPractice
+                PracticeAddress
+                PracticeCity
+                PracticeCountry
+                PracticePostcode
+                PracticeEmail
+                PracticePhoneNumber
+                }
+            }`;
+            const query = {
+                query: gql,
+                variables: {
+                    SID: SID,
+                },
+            };
             const endpoint = "/data-api/graphql";
-            const response = await fetch(endpoint, {method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ query: query })});
+            const response = await fetch(endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(query),
+            });
             const result = await response.json();
-            console.table(result.data.PatientContainer.items);
+            console.table(result.data.Staff_by_pk);
         }
     </script>
 </body>
