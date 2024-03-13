@@ -189,7 +189,7 @@
             });
             const result = await response.json();
             //console.table(result.data.staff.items);
-            valueLength = result.value.length;
+            valueLength = result.data.staff.items.length;
             valueLength += 1;
             for (let i = 1; i < valueLength; i++){
                 const gridContainer = document.querySelector('.grid-container');
@@ -199,7 +199,7 @@
                 div.classList.add("item-container" + (i));
                 div.id = 'icontainer';
             }
-            valueLength2 = result.value.length;
+            valueLength2 = result.data.staff.items.length;
             for (let i2 = 0; i2 < valueLength2; i2++){
                 item = result.value[i2];
                 console.log(item);
