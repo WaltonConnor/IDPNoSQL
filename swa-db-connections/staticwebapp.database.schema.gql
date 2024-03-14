@@ -1,3 +1,5 @@
+union StaffOrPatient = Staff | Patient
+
 type Staff @model {
   SID: ID
   FirstName: String
@@ -25,7 +27,7 @@ type Staff @model {
   id: String
 }
 type Patient @model {
-  NHSnumber: ID
+  NHSnumber: Int
   FirstName: String
   LastName: String
   Sex: String
