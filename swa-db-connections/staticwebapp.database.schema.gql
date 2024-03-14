@@ -23,7 +23,7 @@ type Staff @model {
   PracticeEmail: String
   PracticePhoneNumber: Int
   id: String
-},
+}
 type Patient @model {
   NHSnumber: Int
   FirstName: String
