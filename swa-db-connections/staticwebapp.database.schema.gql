@@ -1,5 +1,5 @@
 type Patient @model{
-  NHSnumber: Int
+  NHSnumber: ID
   FirstName: String
   LastName: String
   Sex: String
