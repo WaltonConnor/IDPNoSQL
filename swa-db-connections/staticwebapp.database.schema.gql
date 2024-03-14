@@ -25,3 +25,26 @@ type Staff @model{
   id: String
 }
 
+type Patient @model{
+  NHSnumber: ID
+  FirstName: String
+  LastName: String
+  Sex: String
+  DoB: String
+  MobileNumber: Int
+  HomeTelephone: Int
+  Email: String
+  Address: String
+  City: String
+  Country: String
+  Postcode: String
+  Allergies: String
+  Notes: String
+  EmergencyContactName: String
+  EmergencyContactNumber: Int
+  UpcomingAppointmentDate: String
+  PracticeName: String
+  AssignedMedicineName: String
+  AssignedMedicineManufacturer: String
+  id: String
+}
