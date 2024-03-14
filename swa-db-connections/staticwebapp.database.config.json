@@ -26,8 +26,8 @@
     }
   },
   "entities": {
-    "Staff": {
-      "source": "StaffContainer",
+    "Patient": {
+      "source": "PatientContainer",
       "rest": false,
       "graphql":true,
       "permissions": [
@@ -37,8 +37,8 @@
         }
       ]
     },
-    "Patient": {
-      "source": "PatientContainer",
+    "Staff": {
+      "source": "StaffContainer",
       "rest": false,
       "graphql":true,
       "permissions": [
