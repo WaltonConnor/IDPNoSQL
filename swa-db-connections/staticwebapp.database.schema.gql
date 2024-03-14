@@ -1,4 +1,4 @@
-type Staff @model {
+type Staff{
   SID: ID
   FirstName: String
   LastName: String
@@ -24,7 +24,7 @@ type Staff @model {
   PracticePhoneNumber: Int
   id: String
 }
-type Patient @model {
+type Patient{
   NHSnumber: Int
   FirstName: String
   LastName: String
