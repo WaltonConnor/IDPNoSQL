@@ -64,7 +64,7 @@
     </div>
 
     <div>
-        <button id="getPatients" onclick="searchPatients()" style="display: none;">Get</button>
+        <button id="getPatients" onclick="searchPatient()" style="display: none;">Get</button>
         <button id="getStaff" onclick="searchStaff()" style="display: none;">Get</button>
     </div>
     
@@ -131,7 +131,7 @@
             return selectedlocationtype;
         }
 
-        async function searchPatients(){
+        async function searchPatient(){
             document.getElementById(".grid-container").innerHTML=""
             const type = sexCheck();
             const type2 = allergyCheck();
