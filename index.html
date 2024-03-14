@@ -139,7 +139,7 @@
             console.log(type2);
             const query = `
             {
-                patient(filter: { Sex: { eq: "`+type+`" }, and: { Allergies: { eq: "`+type2+`" } } }) {
+                Patient(filter: { Sex: { eq: "`+type+`" }, and: { Allergies: { eq: "`+type2+`" } } }) {
                     items{
                         NHSnumber
                         FirstName
@@ -173,7 +173,7 @@
             });
             const result = await response.json();
             //console.table(result.data.patient.items);
-            valueLength = result.data.patient.items.length;
+            valueLength = result.data.Patient.items.length;
             valueLength += 1;
             for (let i = 1; i < valueLength; i++){
                 const gridContainer = document.querySelector('.grid-container');
@@ -183,9 +183,9 @@
                 div.classList.add("item-container" + (i));
                 div.id = 'icontainer';
             }
-            valueLength2 = result.data.patient.items.length;
+            valueLength2 = result.data.Patient.items.length;
             for (let i2 = 0; i2 < valueLength2; i2++){
-                item = result.data.patient.items[i2];
+                item = result.data.Patient.items[i2];
                 console.log(item);
                 var itemContainer = document.querySelector('.item-container' + (i2 += 1));
                 nhs = item.NHSnumber;
