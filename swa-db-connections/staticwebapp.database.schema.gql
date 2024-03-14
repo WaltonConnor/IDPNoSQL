@@ -1,4 +1,4 @@
-type Staff{
+type Staff @model{
   SID: ID
   FirstName: String
   LastName: String
