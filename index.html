@@ -135,6 +135,7 @@
 
         async function searchPatient(){
             var startTime = performance.now();
+            document.getElementById("databaseResponseTime").innerHTML = "";
             document.getElementById(".grid-container").innerHTML="";
             const type = sexCheck();
             const type2 = allergyCheck();
