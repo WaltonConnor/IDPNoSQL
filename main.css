@@ -26,6 +26,7 @@
 .grid-container #itable{
     width: 40%;
     margin: 3vh;
+    display: inline-block;
 }
 
 table, th, td {
