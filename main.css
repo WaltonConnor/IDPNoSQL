@@ -21,6 +21,7 @@
 .grid-container{
     width: 100%;
     float: left;
+    text-align: center;
 }
 .grid-container #icontainer{
     display: inline-grid;
@@ -28,8 +29,4 @@
     margin: 3vh;
     background-color: bisque;
     border-style: solid;
-}
-
-#p{
-    border-bottom: 2px solid black;
 }
