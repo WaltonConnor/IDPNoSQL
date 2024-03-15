@@ -139,7 +139,7 @@
             console.log(type2);
             const query = `
             {
-                patient(filter: { Sex: { eq: "`+type+`" }, and: { Allergies: { eq: "`+type2+`" } } }) {
+                patients(filter: { Sex: { eq: "`+type+`" }, and: { Allergies: { eq: "`+type2+`" } } }) {
                     items{
                         NHSnumber
                         FirstName
