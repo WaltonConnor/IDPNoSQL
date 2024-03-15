@@ -33,3 +33,7 @@
 th, td {
     border: 1px solid black;
 }
+
+#databaseResponseTime{
+    margin: 2px;
+}
