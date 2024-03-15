@@ -241,6 +241,8 @@
             }
         }
         async function searchStaff(){
+            var startTime = performance.now();
+            document.getElementById("databaseResponseTime").innerHTML = "Database Response Time: ";
             document.getElementById(".grid-container").innerHTML=""
             const type = jobnameCheck();
             const type2 = locationtypeCheck();
@@ -285,6 +287,10 @@
             });
             const result = await response.json();
             //console.table(result.data.staff.items);
+            var endTime = performance.now();
+            var totalResponseTime = endTime - startTime;
+            //console.log(totalResponseTime);
+            document.getElementById("databaseResponseTime").innerHTML += totalResponseTime.toFixed() + " miliseconds.";
             valueLength = result.data.staff.items.length;
             valueLength += 1;
             for (let i = 1; i < valueLength; i++){
