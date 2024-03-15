@@ -21,7 +21,6 @@
 .grid-container{
     width: 100%;
     float: left;
-    text-align: center;
 }
 .grid-container #icontainer{
     display: inline-grid;
