@@ -132,7 +132,8 @@
         }
 
         async function searchPatient(){
-            document.getElementById(".grid-container").innerHTML=""
+            var startTime = performance.now();
+            document.getElementById(".grid-container").innerHTML="";
             const type = sexCheck();
             const type2 = allergyCheck();
             console.log(type);
@@ -172,7 +173,10 @@
                 body: JSON.stringify({ query: query }) 
             });
             const result = await response.json();
-            console.table(result.data.patients.items);
+            //console.table(result.data.patients.items);
+            var endTime = performance.now();
+            var totalResponseTime = endTime - startTime;
+            console.log(totalResponseTime);
             valueLength = result.data.patients.items.length;
             valueLength += 1;
             for (let i = 1; i < valueLength; i++){
