@@ -189,9 +189,10 @@
                 item = result.data.patients.items[i2];
                 console.log(item);
                 var tablecontainer = document.querySelector('.table' + (i2 += 1));
+                const table = document.getElementById('table' + (i2+=1));
 
                 nhs = item.NHSnumber;
-                table[i2].innerHTML += "<tr><td>NHS Number</td><td>"+nhs+"</td></tr>";
+                table.innerHTML += "<tr><td>NHS Number</td><td>"+nhs+"</td></tr>";
             }
 
             // for (let i2 = 0; i2 < valueLength2; i2++){
