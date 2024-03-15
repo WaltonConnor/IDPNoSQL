@@ -179,7 +179,7 @@
             var endTime = performance.now();
             var totalResponseTime = endTime - startTime;
             //console.log(totalResponseTime);
-            getElementById("databaseResponseTime").text += totalResponseTime + "miliseconds."
+            document.getElementById("databaseResponseTime").text += totalResponseTime + "miliseconds."
             valueLength = result.data.patients.items.length;
             valueLength += 1;
             for (let i = 1; i < valueLength; i++){
