@@ -34,3 +34,7 @@
 .item-container{
     border-style: solid;
 }
+
+.l{
+    border-bottom: 2px black;
+}
