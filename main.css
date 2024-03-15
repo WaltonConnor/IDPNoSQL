@@ -31,10 +31,10 @@
     border-style: solid;
 }
 
-.item-container{
-    border-style: solid;
+.l > * {
+    border-bottom: 2px solid black;
 }
 
-.l{
+.item-container > * {
     border-bottom: 2px solid black;
 }
