@@ -31,10 +31,6 @@
     border-style: solid;
 }
 
-.l > * {
-    border-bottom: 2px solid black;
-}
-
-.item-container > * {
+.p{
     border-bottom: 2px solid black;
 }
