@@ -184,18 +184,15 @@
                 table.id = 'itable';
                 table.innerHTML = "<tr><th>Field</th><th>Data</th></tr>";
             }
-            // valueLength2 = result.data.patients.items.length;
-            // for (let i2 = 0; i2 < valueLength2; i2++){
-            //     item = result.data.patients.items[i2];
-            //     console.log(item);
-            //     var tablecontainer = document.querySelector('.table' + (i2 += 1));
+            valueLength2 = result.data.patients.items.length;
+            for (let i2 = 0; i2 < valueLength2; i2++){
+                item = result.data.patients.items[i2];
+                console.log(item);
+                var tablecontainer = document.querySelector('.table' + (i2 += 1));
 
-            //     nhs = item.NHSnumber;
-            //     const line1 = document.createElement('l');
-            //     itemContainer.append(line1);
-            //     line1.innerText = "NHS Number = " + nhs;
-            //     line1.id = 'p';
-            // }
+                nhs = item.NHSnumber;
+                table.innerHTML += "<tr><td>NHS Number</td><td>"+nhs+"</td></tr>";
+            }
 
             // for (let i2 = 0; i2 < valueLength2; i2++){
             //     item = result.data.patients.items[i2];
