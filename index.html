@@ -135,7 +135,7 @@
 
         async function searchPatient(){
             var startTime = performance.now();
-            document.getElementById("databaseResponseTime").innerHTML = "";
+            document.getElementById("databaseResponseTime").innerHTML = "Database Response Time: ";
             document.getElementById(".grid-container").innerHTML="";
             const type = sexCheck();
             const type2 = allergyCheck();
@@ -180,7 +180,7 @@
             var endTime = performance.now();
             var totalResponseTime = endTime - startTime;
             //console.log(totalResponseTime);
-            document.getElementById("databaseResponseTime").innerHTML += totalResponseTime + " miliseconds.";
+            document.getElementById("databaseResponseTime").innerHTML += totalResponseTime.toFixed() + " miliseconds.";
             valueLength = result.data.patients.items.length;
             valueLength += 1;
             for (let i = 1; i < valueLength; i++){
