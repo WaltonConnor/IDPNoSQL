@@ -67,6 +67,8 @@
         <button id="getPatients" onclick="searchPatient()" style="display: none;">Get</button>
         <button id="getStaff" onclick="searchStaff()" style="display: none;">Get</button>
     </div>
+
+    <div class="responseTime" id="databaseResponseTime">Time taken for database response: </div>
     
     <div class="grid-container" id=".grid-container"></div>
     
@@ -177,6 +179,7 @@
             var endTime = performance.now();
             var totalResponseTime = endTime - startTime;
             console.log(totalResponseTime);
+            getElementById("databaseResponseTime").text += totalResponseTime + "miliseconds."
             valueLength = result.data.patients.items.length;
             valueLength += 1;
             for (let i = 1; i < valueLength; i++){
