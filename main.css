@@ -24,11 +24,8 @@
     text-align: center;
 }
 .grid-container #itable{
-    display: inline-grid;
     width: 40%;
     margin: 3vh;
-    background-color: bisque;
-    border-style: solid;
 }
 
 table, th, td {
