@@ -27,6 +27,7 @@
     width: 20%;
     margin: 3vh;
     display: inline-block;
+    vertical-align: top;
 }
 
 table, th, td {
