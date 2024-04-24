@@ -23,10 +23,17 @@
     float: left;
     text-align: center;
 }
-.grid-container #icontainer{
-    display: inline-grid;
-    width: 25%;
+.grid-container #itable{
+    width: 20%;
     margin: 3vh;
-    background-color: bisque;
-    border-style: solid;
+    display: inline-block;
+    vertical-align: top;
+}
+
+th, td {
+    border: 1px solid black;
+}
+
+#databaseResponseTime{
+    margin: 10px;
 }

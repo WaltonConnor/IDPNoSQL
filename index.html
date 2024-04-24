@@ -65,9 +65,11 @@
     </div>
 
     <div>
-        <button id="getPatients" onclick="searchPatients()" style="display: none;">Get</button>
+        <button id="getPatients" onclick="searchPatient()" style="display: none;">Get</button>
         <button id="getStaff" onclick="searchStaff()" style="display: none;">Get</button>
     </div>
+
+    <div class="responseTime" id="databaseResponseTime">Database Response Time: </div>
     
     <div class="grid-container" id=".grid-container"></div>
     
@@ -132,15 +134,17 @@
             return selectedlocationtype;
         }
 
-        async function searchPatients(){
-            document.getElementById(".grid-container").innerHTML=""
+        async function searchPatient(){
+            var startTime = performance.now();
+            document.getElementById("databaseResponseTime").innerHTML = "Database Response Time: ";
+            document.getElementById(".grid-container").innerHTML="";
             const type = sexCheck();
             const type2 = allergyCheck();
             console.log(type);
             console.log(type2);
             const query = `
             {
-                patient(filter: { Sex: { eq: "`+type+`" }, and: { Allergies: { eq: "`+type2+`" } } }) {
+                patients(filter: { Sex: { eq: "`+type+`" }, and: { Allergies: { eq: "`+type2+`" } } }) {
                     items{
                         NHSnumber
                         FirstName
@@ -153,7 +157,7 @@
                         Address
                         City
                         Country
-                        PostCode
+                        Postcode
                         Allergies
                         Notes
                         EmergencyContactName
@@ -173,126 +177,73 @@
                 body: JSON.stringify({ query: query }) 
             });
             const result = await response.json();
-            //console.table(result.data.patient.items);
-            valueLength = result.data.patient.items.length;
+            //console.table(result.data.patients.items);
+            var endTime = performance.now();
+            var totalResponseTime = endTime - startTime;
+            //console.log(totalResponseTime);
+            document.getElementById("databaseResponseTime").innerHTML += totalResponseTime.toFixed() + " miliseconds.";
+            valueLength = result.data.patients.items.length;
             valueLength += 1;
             for (let i = 1; i < valueLength; i++){
                 const gridContainer = document.querySelector('.grid-container');
-                const div = document.createElement('div');
-                gridContainer.append(div);
+                const table = document.createElement('table');
+                gridContainer.append(table);
         
-                div.classList.add("item-container" + (i));
-                div.id = 'icontainer';
+                table.classList.add("table" + (i));
+                table.id = 'itable';
+                table.innerHTML = "<tr><th>Field</th><th>Data</th></tr>";
             }
-            valueLength2 = result.data.patient.items.length;
+            valueLength2 = result.data.patients.items.length;
             for (let i2 = 0; i2 < valueLength2; i2++){
-                item = result.data.patient.items[i2];
+                item = result.data.patients.items[i2];
                 console.log(item);
-                var itemContainer = document.querySelector('.item-container' + (i2 += 1));
+                var tablecontainer = document.querySelector('.table' + (i2 += 1));
                 nhs = item.NHSnumber;
-                const line1 = document.createElement('l');
-                itemContainer.append(line1);
-                line1.innerText = "NHS Number = " + nhs;
-                line1.id = 'pNHS';
+                tablecontainer.innerHTML += "<tr><td>NHS Number</td><td>"+nhs+"</td></tr>";
                 fname = item.FirstName;
-                const line2 = document.createElement('l');
-                itemContainer.append(line2);
-                line2.innerText = "First Name = " + fname;
-                line2.id = 'pFirstname';
+                tablecontainer.innerHTML += "<tr><td>First Name</td><td>"+fname+"</td></tr>";
                 lname = item.LastName;
-                const line3 = document.createElement('l');
-                itemContainer.append(line3);
-                line3.innerText = "Last Name = " + lname;
-                line3.id = 'pLastname';
+                tablecontainer.innerHTML += "<tr><td>Last Name</td><td>"+lname+"</td></tr>";
                 sex = item.Sex;
-                const line4 = document.createElement('l');
-                itemContainer.append(line4);
-                line4.innerText = "Sex = " + sex;
-                line4.id = 'pSex';
+                tablecontainer.innerHTML += "<tr><td>Sex</td><td>"+sex+"</td></tr>";
                 dob = item.DoB;
-                const line5 = document.createElement('l');
-                itemContainer.append(line5);
-                line5.innerText = "Date of Birth = " + dob;
-                line5.id = 'pDoB';
+                tablecontainer.innerHTML += "<tr><td>Date of Birth</td><td>"+dob+"</td></tr>";
                 mnumber = item.MobileNumber;
-                const line6 = document.createElement('l');
-                itemContainer.append(line6);
-                line6.innerText = "Mobile Number = " + mnumber;
-                line6.id = 'pMobileNumber';
+                tablecontainer.innerHTML += "<tr><td>Mobile Number</td><td>"+mnumber+"</td></tr>";
                 hnumber = item.HomeTelephone;
-                const line7 = document.createElement('l');
-                itemContainer.append(line7);
-                line7.innerText = "Home Telephone = " + hnumber;
-                line7.id = 'pHometelephone';
+                tablecontainer.innerHTML += "<tr><td>Home Telephone</td><td>"+hnumber+"</td></tr>";
                 email = item.Email;
-                const line8 = document.createElement('l');
-                itemContainer.append(line8);
-                line8.innerText = "Email = " + email;
-                line8.id = 'pEmail';
+                tablecontainer.innerHTML += "<tr><td>Email</td><td>"+email+"</td></tr>";
                 address = item.Address;
-                const line9 = document.createElement('l');
-                itemContainer.append(line9);
-                line9.innerText = "Address = " + address;
-                line9.id = 'pAddress';
+                tablecontainer.innerHTML += "<tr><td>Address</td><td>"+address+"</td></tr>";
                 city = item.City;
-                const line10 = document.createElement('l');
-                itemContainer.append(line10);
-                line10.innerText = "City = " + city;
-                line10.id = 'pCity';
+                tablecontainer.innerHTML += "<tr><td>City</td><td>"+city+"</td></tr>";
                 country = item.Country;
-                const line11 = document.createElement('l');
-                itemContainer.append(line11);
-                line11.innerText = "Country = " + country;
-                line11.id = 'pCountry';
-                postcode = item.PostCode;
-                const line12 = document.createElement('l');
-                itemContainer.append(line12);
-                line12.innerText = "Postcode = " + postcode;
-                line12.id = 'pPostcode';
+                tablecontainer.innerHTML += "<tr><td>Country</td><td>"+country+"</td></tr>";
+                postcode = item.Postcode;
+                tablecontainer.innerHTML += "<tr><td>Postcode</td><td>"+postcode+"</td></tr>";
                 allergies = item.Allergies;
-                const line13 = document.createElement('l');
-                itemContainer.append(line13);
-                line13.innerText = "Allergies = " + allergies;
-                line13.id = 'pAllergies';
+                tablecontainer.innerHTML += "<tr><td>Allergies</td><td>"+allergies+"</td></tr>";
                 notes = item.Notes;
-                const line14 = document.createElement('l');
-                itemContainer.append(line14);
-                line14.innerText = "Notes = " + notes;
-                line14.id = 'pNotes';
+                tablecontainer.innerHTML += "<tr><td>Notes</td><td>"+notes+"</td></tr>";
                 emergencycontname = item.EmergencyContactName;
-                const line15 = document.createElement('l');
-                itemContainer.append(line15);
-                line15.innerText = "Emergency Contact Name = " + emergencycontname;
-                line15.id = 'pEmergencycontactname';
+                tablecontainer.innerHTML += "<tr><td>Emergency Contact Name</td><td>"+emergencycontname+"</td></tr>";
                 emergencycontnumber = item.EmergencyContactNumber;
-                const line16 = document.createElement('l');
-                itemContainer.append(line16);
-                line16.innerText = "Emergency Contact Number = " + emergencycontnumber;
-                line16.id = 'pEmergencycontactnumber';
+                tablecontainer.innerHTML += "<tr><td>Emergency Contact Number</td><td>"+emergencycontnumber+"</td></tr>";
                 upcomingappdate = item.UpcomingAppointmentDate;
-                const line17 = document.createElement('l');
-                itemContainer.append(line17);
-                line17.innerText = "Upcoming Appointment Date = " + upcomingappdate;
-                line17.id = 'pUpcomingappointmentdate';
+                tablecontainer.innerHTML += "<tr><td>Upcoming Appointment Date</td><td>"+upcomingappdate+"</td></tr>";
                 practicename = item.PracticeName;
-                const line18 = document.createElement('l');
-                itemContainer.append(line18);
-                line18.innerText = "Practice Name = " + practicename;
-                line18.id = 'pPracticename';
+                tablecontainer.innerHTML += "<tr><td>Practice Name</td><td>"+practicename+"</td></tr>";
                 assignedmedicine = item.AssignedMedicineName;
-                const line19 = document.createElement('l');
-                itemContainer.append(line19);
-                line19.innerText = "Assigned Medicine Name = " + assignedmedicine;
-                line19.id = 'pAssignedmedicinename';
+                tablecontainer.innerHTML += "<tr><td>Assigned Medicine</td><td>"+assignedmedicine+"</td></tr>";
                 assignedmedicinemanufacturer = item.AssignedMedicineManufacturer;
-                const line20 = document.createElement('l');
-                itemContainer.append(line20);
-                line20.innerText = "Assigned Medicine Manufacturer = " + assignedmedicinemanufacturer;
-                line20.id = 'pAssignedmedicinename';
+                tablecontainer.innerHTML += "<tr><td>Medicine Manufacturer</td><td>"+assignedmedicinemanufacturer+"</td></tr>";
                 i2 -=1;
             }
         }
         async function searchStaff(){
+            var startTime = performance.now();
+            document.getElementById("databaseResponseTime").innerHTML = "Database Response Time: ";
             document.getElementById(".grid-container").innerHTML=""
             const type = jobnameCheck();
             const type2 = locationtypeCheck();
@@ -337,121 +288,66 @@
             });
             const result = await response.json();
             //console.table(result.data.staff.items);
+            var endTime = performance.now();
+            var totalResponseTime = endTime - startTime;
+            //console.log(totalResponseTime);
+            document.getElementById("databaseResponseTime").innerHTML += totalResponseTime.toFixed() + " miliseconds.";
             valueLength = result.data.staff.items.length;
             valueLength += 1;
             for (let i = 1; i < valueLength; i++){
                 const gridContainer = document.querySelector('.grid-container');
-                const div = document.createElement('div');
-                gridContainer.append(div);
+                const table = document.createElement('table');
+                gridContainer.append(table);
         
-                div.classList.add("item-container" + (i));
-                div.id = 'icontainer';
+                table.classList.add("table" + (i));
+                table.id = 'itable';
+                table.innerHTML = "<tr><th>Field</th><th>Data</th></tr>";
             }
             valueLength2 = result.data.staff.items.length;
             for (let i2 = 0; i2 < valueLength2; i2++){
                 item = result.data.staff.items[i2];
                 console.log(item);
-                var itemContainer = document.querySelector('.item-container' + (i2 += 1));
+                var tablecontainer = document.querySelector('.table' + (i2 += 1));
                 sid = item.SID;
-                const line1 = document.createElement('l');
-                itemContainer.append(line1);
-                line1.innerText = "SID = " + sid;
-                line1.id = 'sSID';
+                tablecontainer.innerHTML += "<tr><td>Staff ID</td><td>"+sid+"</td></tr>";
                 fname = item.FirstName;
-                const line2 = document.createElement('l');
-                itemContainer.append(line2);
-                line2.innerText = "First Name = " + fname;
-                line2.id = 'sFirstname';
+                tablecontainer.innerHTML += "<tr><td>First Name</td><td>"+fname+"</td></tr>";
                 lname = item.LastName;
-                const line3 = document.createElement('l');
-                itemContainer.append(line3);
-                line3.innerText = "Last Name = " + lname;
-                line3.id = 'sLastname';
+                tablecontainer.innerHTML += "<tr><td>Last Name</td><td>"+lname+"</td></tr>";
                 mnumber = item.MobileNumber;
-                const line4 = document.createElement('l');
-                itemContainer.append(line4);
-                line4.innerText = "Mobile Number = " + mnumber;
-                line4.id = 'sMobileNumber';
+                tablecontainer.innerHTML += "<tr><td>Mobile Number</td><td>"+mnumber+"</td></tr>";
                 hnumber = item.HomeTelephone;
-                const line5 = document.createElement('l');
-                itemContainer.append(line5);
-                line5.innerText = "Home Telephone = " + hnumber;
-                line5.id = 'sHometelephone';
+                tablecontainer.innerHTML += "<tr><td>Home Telephone</td><td>"+hnumber+"</td></tr>";
                 email = item.Email;
-                const line6 = document.createElement('l');
-                itemContainer.append(line6);
-                line6.innerText = "Email = " + email;
-                line6.id = 'sEmail';
+                tablecontainer.innerHTML += "<tr><td>Email</td><td>"+email+"</td></tr>";
                 address = item.Address;
-                const line7 = document.createElement('l');
-                itemContainer.append(line7);
-                line7.innerText = "Address = " + address;
-                line7.id = 'sAddress';
+                tablecontainer.innerHTML += "<tr><td>Address</td><td>"+address+"</td></tr>";
                 city = item.City;
-                const line8 = document.createElement('l');
-                itemContainer.append(line8);
-                line8.innerText = "City = " + city;
-                line8.id = 'sCity';
+                tablecontainer.innerHTML += "<tr><td>City</td><td>"+city+"</td></tr>";
                 country = item.Country;
-                const line9 = document.createElement('l');
-                itemContainer.append(line9);
-                line9.innerText = "Country = " + country;
-                line9.id = 'sCountry';
+                tablecontainer.innerHTML += "<tr><td>Country</td><td>"+country+"</td></tr>";
                 postcode = item.PostCode;
-                const line10 = document.createElement('l');
-                itemContainer.append(line10);
-                line10.innerText = "Postcode = " + postcode;
-                line10.id = 'sPostcode';
+                tablecontainer.innerHTML += "<tr><td>Postcode</td><td>"+postcode+"</td></tr>";
                 emergencycontname = item.EmergencyContactName;
-                const line11 = document.createElement('l');
-                itemContainer.append(line11);
-                line11.innerText = "Emergency Contact Name = " + emergencycontname;
-                line11.id = 'sEmergencycontactname';
+                tablecontainer.innerHTML += "<tr><td>Emergency Contact Name</td><td>"+emergencycontname+"</td></tr>";
                 emergencycontnumber = item.EmergencyContactNumber;
-                const line12 = document.createElement('l');
-                itemContainer.append(line12);
-                line12.innerText = "Emergency Contact Number = " + emergencycontnumber;
-                line12.id = 'sEmergencycontactnumber';
+                tablecontainer.innerHTML += "<tr><td>Emergency Contact Number</td><td>"+emergencycontnumber+"</td></tr>";
                 jobname = item.JobName;
-                const line13 = document.createElement('l');
-                itemContainer.append(line13);
-                line13.innerText = "Job Name = " + jobname;
-                line13.id = 'sJobname';
+                tablecontainer.innerHTML += "<tr><td>Job Name</td><td>"+jobname+"</td></tr>";
                 practicename = item.PracticeName;
-                const line14 = document.createElement('l');
-                itemContainer.append(line14);
-                line14.innerText = "Practice Name = " + practicename;
-                line14.id = 'sPracticename';
+                tablecontainer.innerHTML += "<tr><td>Practice Name</td><td>"+practicename+"</td></tr>";
                 typeofpractice = item.TypeOfPractice;
-                const line15 = document.createElement('l');
-                itemContainer.append(line15);
-                line15.innerText = "Type Of Practice = " + typeofpractice;
-                line15.id = 'sTypeofpractice';
+                tablecontainer.innerHTML += "<tr><td>Type of Practice</td><td>"+typeofpractice+"</td></tr>";
                 practiceaddress = item.PracticeAddress;
-                const line16 = document.createElement('l');
-                itemContainer.append(line16);
-                line16.innerText = "Practice Address = " + practiceaddress;
-                line16.id = 'sPracticeaddress';
+                tablecontainer.innerHTML += "<tr><td>Practice Address</td><td>"+practiceaddress+"</td></tr>";
                 practicecity = item.PracticeCity;
-                const line17 = document.createElement('l');
-                itemContainer.append(line17);
-                line17.innerText = "Practice City = " + practicecity;
-                line17.id = 'sPracticecity';
+                tablecontainer.innerHTML += "<tr><td>Practice City</td><td>"+practicecity+"</td></tr>";
                 practicecountry = item.PracticeCountry;
-                const line18 = document.createElement('l');
-                itemContainer.append(line18);
-                line18.innerText = "Practice Country = " + practicecountry;
-                line18.id = 'sPracticecountry';
+                tablecontainer.innerHTML += "<tr><td>Practice Country</td><td>"+practicecountry+"</td></tr>";
                 practicepostcode = item.PracticePostcode;
-                const line19 = document.createElement('l');
-                itemContainer.append(line19);
-                line19.innerText = "Practice Postcode = " + practicepostcode;
-                line19.id = 'sPracticepostcode';
+                tablecontainer.innerHTML += "<tr><td>Practice Postcode</td><td>"+practicepostcode+"</td></tr>";
                 practicepnumber = item.PracticePhoneNumber;
-                const line20 = document.createElement('l');
-                itemContainer.append(line20);
-                line20.innerText = "Practice Phone Number = " + practicepnumber;
-                line20.id = 'sPracticephonenumber';
+                tablecontainer.innerHTML += "<tr><td>Practice Phone Number</td><td>"+practicepnumber+"</td></tr>";
                 i2 -=1;
             }
         }
